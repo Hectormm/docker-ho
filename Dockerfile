@@ -11,7 +11,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install wget=* default-jre=* && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-	wget -O /tmp/ho.deb https://sourceforge.net/projects/ho1/files/ho1/${HO_FILE_VERSION}.deb/download && \
 	wget -O /tmp/ho.deb https://github.com/akasolace/HO/releases/download/${HO_FILE_VERSION}.deb && \
 	echo "${HO_FILE_SHA256SUM}  /tmp/ho.deb"| sha256sum -c - && \
 	dpkg -i /tmp/ho.deb && \
