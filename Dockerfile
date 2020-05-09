@@ -1,5 +1,5 @@
 FROM debian:jessie
-LABEL maintainer="Hector Martinez
+LABEL maintainer="Hector Martinez"
 
 LABEL org.label-schema.vcs-url="https://github.com/Hectormm/docker-ho"
 LABEL version="latest"
