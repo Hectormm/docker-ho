@@ -1,17 +1,18 @@
 FROM debian:jessie
-LABEL maintainer="Jean-Avit Promis docker@katagena.com"
+LABEL maintainer="Hector Martinez
 
-LABEL org.label-schema.vcs-url="https://github.com/nouchka/docker-ho"
+LABEL org.label-schema.vcs-url="https://github.com/Hectormm/docker-ho"
 LABEL version="latest"
 
-ARG HO_FILE_SHA256SUM=f37618d8ec16f85c404af8a1bd39dd1c03ab781f747b1c23693f82819cd79549
-ARG HO_FILE_VERSION=1.434/HO_1434_r2696
+ARG HO_FILE_SHA256SUM=51E1DAA5383D5A5A4E4BE69CE372D6748CB636AF4910A30BE0159F5DAD82306D
+ARG HO_FILE_VERSION=3.0/HO-3.0.2.2728
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install wget=* default-jre=* && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
 	wget -O /tmp/ho.deb https://sourceforge.net/projects/ho1/files/ho1/${HO_FILE_VERSION}.deb/download && \
+	wget -O /tmp/ho.deb https://github.com/akasolace/HO/releases/download/${HO_FILE_VERSION}.deb && \
 	echo "${HO_FILE_SHA256SUM}  /tmp/ho.deb"| sha256sum -c - && \
 	dpkg -i /tmp/ho.deb && \
 	export uid=1000 gid=1000 && \
